@@ -5,15 +5,122 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:padding="24dp"
     tools:context=".MainActivity">
 
+    <!-- Title at the top of the screen, centred horizontally
+          (start->start of parent + end->end of parent centres it;
+           only a top constraint, so it stays at the top, not vertically centred) -->
     <TextView
+        android:id="@+id/titleText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Hello World!"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:text="Tap Counter"
+        android:textSize="32sp"
+        android:textStyle="bold"
+        app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <!-- Countdown timer display. Starts at 20 (hard-coded here);
+         the Kotlin code updates this every second while the game runs. -->
+    <TextView
+        android:id="@+id/timerText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="20"
+        android:textSize="48sp"
+        android:textStyle="bold"
+        android:layout_marginTop="40dp"
+        app:layout_constraintTop_toBottomOf="@id/titleText"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <!-- Label under the timer so the user knows the number above is seconds -->
+    <TextView
+        android:id="@+id/secondsLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="seconds"
+        android:textSize="16sp"
+        app:layout_constraintTop_toBottomOf="@id/timerText"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <!-- Tap count display. Starts at 0; the Kotlin code increments it
+         each time the user taps the button. -->
+    <TextView
+        android:id="@+id/countText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="0"
+        android:textSize="48sp"
+        android:textStyle="bold"
+        android:layout_marginTop="35dp"
+        app:layout_constraintTop_toBottomOf="@id/secondsLabel"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <!-- Label under the count so the user knows the number above is taps -->
+    <TextView
+        android:id="@+id/tapsLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="taps"
+        android:textSize="16sp"
+        app:layout_constraintTop_toBottomOf="@id/countText"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <!-- The main game button. Tapping it starts the game (on the first tap)
+         and increments the counter on every tap while time remains. -->
+    <Button
+        android:id="@+id/tapButton"
+        android:layout_width="200dp"
+        android:layout_height="80dp"
+        android:text="TAP!"
+        android:textSize="24sp"
+        android:layout_marginTop="40dp"
+        app:layout_constraintTop_toBottomOf="@id/tapsLabel"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <!-- Resets the game back to its starting state so the user can play again -->
+    <Button
+        android:id="@+id/resetButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Reset"
+        android:layout_marginTop="30dp"
+        app:layout_constraintTop_toBottomOf="@id/tapButton"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <!-- Title for the top scores section (placeholder for now — the
+         functionality to record the scores comes in a later class) -->
+    <TextView
+        android:id="@+id/topScoresTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Top 5 Scores"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:layout_marginTop="30dp"
+        app:layout_constraintTop_toBottomOf="@id/resetButton"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <!-- Placeholder list of the top 5 scores.
+         &#10; is the XML code for a newline, so each score is on its own line. -->
+    <TextView
+        android:id="@+id/topScoresText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="1. ---&#10;2. ---&#10;3. ---&#10;4. ---&#10;5. ---"
+        android:textSize="16sp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintTop_toBottomOf="@id/topScoresTitle"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
